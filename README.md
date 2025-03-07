@@ -14,9 +14,13 @@ Design and implementation of a custom 32-bit RISC-V processor supporting the RV3
 | `0110011`     | SLT              | R-Type     | rD = if (rS1 < rS2) return True          | `slt r3, r1, r2`       |
 | `0110011`     | SLTU             | R-Type     | rD = if (rS1(uint) < rS2(uint)) return True | `sltu r3, r1, r2`   |
 | `0110011`     | SRA              | R-Type     | rD = rS1 >>> rS2                         | `sra r3, r1, r2`       |
-| `0110011`     | MUL              | R-Type     | rD = rS1 * rS2                           | `mul r3, r1, r2`       |
-| `0110011`     | DIV              | R-Type     | rD = rS1 / rS2                           | `div r3, r1, r2`       |
-| `0110011`     | REM              | R-Type     | rD = rS1 % rS2                           | `rem r3, r1, r2`       |
+| `0110011`     | MUL              | R-Type (M) | rD = (rS1 * rS2) [31:0]                  | `mul r3, r1, r2`       |
+| `0110011`     | MULU             | R-Type (M) | rD = (rS1(uint) * rS2(uint)) [31:0]      | `mulu r3, r1, r2`      |
+| `0110011`     | MULH             | R-Type (M) | rD = (rS1 * rS2) [63:32]                 | `mulh r3, r1, r2`      |
+| `0110011`     | MULHU            | R-Type (M) | rD = (rS1(uint) * rS2(uint)) [63:32]     | `mulhu r3, r1, r2`     |
+| `0110011`     | DIVU             | R-Type (M) | rD = (rS1(uint) / rS2(uint))             | `divu r3, r1, r2`      |
+| `0110011`     | DIV              | R-Type (M) | rD = rS1 / rS2                           | `div r3, r1, r2`       |
+| `0110011`     | REM              | R-Type (M) | rD = rS1 % rS2                           | `rem r3, r1, r2`       |
 | `0010011`     | ADDI             | I-Type     | rD = rS1 + imm                           | `addi r3, r1, 10`      |
 | `0010011`     | SLTI             | I-Type     | rD = if (rS1 < imm) return True          | `slti r3, r1, 0xFF`    |
 | `0010011`     | SLTIU            | I-Type     | rD = if (rS1(uint) < rS2(uint)) return True | `sltiu r3, r1, 0xFF`|
@@ -42,3 +46,5 @@ Design and implementation of a custom 32-bit RISC-V processor supporting the RV3
 | `1100111`     | JALR             | I-Type     | Jump and link register                   | `jalr r1, r2, 0`       |
 | `0110111`     | LUI              | U-Type     | Load upper immediate                     | `lui r1, 0x12345`      |
 | `0010111`     | AUIPC            | U-Type     | Add upper immediate to PC                | `auipc r1, 0x1000`     |
+
+This table lists all the 40 RISC-V instructions supported by the processor.
