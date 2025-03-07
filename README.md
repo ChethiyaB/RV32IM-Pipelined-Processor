@@ -78,12 +78,9 @@ The processor handles hazards using the following techniques:
 Navigate to the working directory and make sure all files are in the directory. Analyze all .vhdl files before running main.vhdl 
 
 ```
-ghdl -a file_name.vhdl
-```
-
-```
+ghdl -a *.vhdl
 ghdl -e main
-ghdl -r main --wave=waveform.ghw
+ghdl -r main --wave=wave.ghw
 gtkwave waveform.ghw
 ```
 
