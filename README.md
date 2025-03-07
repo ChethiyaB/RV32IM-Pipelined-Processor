@@ -70,9 +70,12 @@ The processor handles hazards using the following techniques:
 **Control Hazard**: Implements **pipline flushing and instruction replacement** when a branch is taken.  
 
 ## How to Build & Simulate  
+
 ### Requirements  
+
 - **VHDL Simulator** (ModelSim, GHDL, Xilinx Vivado)
 - **GTKWave**
+  
 ### Simulate
 
 Navigate to the working directory and make sure all files are in the directory. Analyze all .vhdl files before running main.vhdl 
