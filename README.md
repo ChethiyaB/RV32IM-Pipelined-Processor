@@ -48,3 +48,47 @@ Design and implementation of a custom 32-bit RISC-V processor supporting the RV3
 | `0010111`     | AUIPC            | U-Type     | Add upper immediate to PC                | `auipc r1, 0x1000`     |
 
 This table lists all the 40 RISC-V instructions supported by the processor.
+
+## Features  
+- **5-Stage Pipeline**: IF, ID, EX, MEM, WB  
+- **Hazard Handling**:  
+  - Load-use hazard detection and NOP insertion  
+  - Control hazard handling with pipline flushing  
+  - Data hazard mitigation via forwarding  
+- **Memory Unit**: Supports **load/store operations** (LB, LH, LW, SB, SH, SW)  
+- **ALU Operations**: Supports arithmetic, logical, and branching instructions  
+- **Register File**: 32 general-purpose registers with asynchronous reads  
+- **Instruction Memory (IMEM) & Data Memory (DMEM)**
+
+## Hazard Handling  
+The processor handles hazards using the following techniques:  
+
+**Load-Use Hazard**: Detects dependencies between load instructions and subsequent dependent instructions. Inserts a **NOP** to the pipeline.  
+
+**Data Hazard**: Uses a **Forwarding Unit** to forward register values from MEM and WB stages to EX stage.  
+
+**Control Hazard**: Implements **pipline flushing and instruction replacement** when a branch is taken.  
+
+## How to Build & Simulate  
+### Requirements  
+- **VHDL Simulator** (ModelSim, GHDL, Xilinx Vivado)
+- **GTKWave**
+### Simulate
+
+Navigate to the working directory and make sure all files are in the directory. Analyze all .vhdl files before running main.vhdl 
+
+```
+ghdl -a file_name.vhdl
+```
+
+```
+ghdl -e main
+ghdl -r main --wave=waveform.ghw
+gtkwave waveform.ghw
+```
+
+## References
+- Hennessy, J. L., & Patterson, D. A. (2020). Computer Architecture: A Quantitative Approach.
+- IEEE Std 1800-2019: SystemVerilog—Unified Hardware Design.
+- Installing GHDL and GTKWave: https://www.youtube.com/watch?v=0JJku1vTu78
+- Learn VHDL: https://nandland.com/learn-vhdl/
